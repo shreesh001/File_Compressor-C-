@@ -105,7 +105,7 @@ void buildHuffmanTree(string text) {
 
     cout << "Encoded String (Saved to compressed.txt): " << encodedString << endl;
 
-    // Calculate Efficiency (Simulation)
+    // Calculate Efficiency
     int originalBits = text.length() * 8; // ASCII is 8 bits
     int compressedBits = encodedString.length(); // Huffman is 1 bit per char in string
     double ratio = (1.0 - (double)compressedBits / originalBits) * 100;
@@ -116,12 +116,10 @@ void buildHuffmanTree(string text) {
     cout << "Compression Ratio: " << ratio << "%" << endl;
 
     // --- MEMORY CLEANUP ---
-    // This justifies your resume point about "memory management"
     deleteTree(root);
 }
 
 int main() {
-    // In a real scenario, you would read this from 'input.txt'
     string text = "Hello this is Shreesh Pathak who build file compression using Huffman Coding.";
 
     // Or uncomment below to read from file:
