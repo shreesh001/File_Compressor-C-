@@ -16,8 +16,8 @@ I built this project to demonstrate **low-level system skills**, specifically ma
 
 ## 🛠️ Technical Implementation
 ### The Logic
-1.  **Frequency Analysis:** Maps character occurrences ($O(N)$).
-2.  **Tree Construction:** Builds a binary tree where frequent characters are near the root (short codes) and rare characters are deep leaves ($O(N \log N)$).
+1.  **Frequency Analysis:** Maps character occurrences.
+2.  **Tree Construction:** Builds a binary tree where frequent characters are near the root (short codes) and rare characters are deep leaves.
 3.  **Encoding:** Generates unique bit-sequences for every character.
 
 ### Why C++?
