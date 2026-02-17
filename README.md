@@ -29,18 +29,21 @@ I chose C++ for this project to leverage:
 **1. Compile the code:**
 ```bash
 g++ -std=c++17 huffman.cpp -o huffman
-Run the executable:
+```
+**2. Run the executable:**
+```bash
 ./huffman
+```
 
-📊 Sample Output:
---- Efficiency Stats ---
-Original Size: 616 bits
-Compressed Size: 335 bits
-Compression Ratio: 45.6169%
+### 📊 Sample Output:
+**--- Efficiency Stats ---**
+* Original Size: 616 bits
+* Compressed Size: 335 bits
+* Compression Ratio: 45.6169%
 
-🔮 Future Improvements
-Implement bitwise operations to write actual binary data to disk (currently writes string representation for demonstration).
-Add a decompression module to restore original files.
+### 🔮 Future Improvements
+* Implement bitwise operations to write actual binary data to disk (currently writes string representation for demonstration).
+* Add a decompression module to restore original files.
 
-Author: Shreesh Pathak
+**Author:** Shreesh Pathak
 
