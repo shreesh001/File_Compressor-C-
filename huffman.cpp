@@ -56,6 +56,15 @@ void buildHuffmanTree(string text) {
         freq[ch]++;
     }
 
+    cout << "\n--- Character Frequency Map ---\n";
+
+    for(auto pair : freq) {
+        if(pair.first == ' ')
+            cout << "[space]" << " -> " << pair.second << endl;
+        else
+            cout << pair.first << " -> " << pair.second << endl;
+    }
+
     // 2. Create a priority queue to store live nodes of Huffman tree
     priority_queue<Node*, vector<Node*>, compare> pq;
 
@@ -84,12 +93,24 @@ void buildHuffmanTree(string text) {
     generateCodes(root, "", huffmanCode);
 
     // --- DISPLAY RESULTS ---
-    cout << "--- Huffman Codes Generated ---" << endl;
+    cout << "\n--- Character to Huffman Code Map ---\n";
+
     for (auto pair : huffmanCode) {
-        cout << pair.first << " : " << pair.second << endl;
+        if (pair.first == ' ') {
+            cout << "[space]" << " -> " << pair.second << endl;
+        }
+        else if (pair.first == '\n') {
+            cout << "[newline]" << " -> " << pair.second << endl;
+        }
+        else if (pair.first == '\t') {
+            cout << "[tab]" << " -> " << pair.second << endl;
+        }
+        else {
+        cout << "'" << pair.first << "'" << " -> " << pair.second << endl;
+        }
     }
 
-    cout << "\nOriginal String: " << text << endl;
+    cout << "\nOriginal String: " << text << endl << endl;
 
     // Create Encoded String
     string encodedString = "";
@@ -107,20 +128,30 @@ void buildHuffmanTree(string text) {
 
     // Calculate Efficiency
     int originalBits = text.length() * 8; // ASCII is 8 bits
-    int compressedBits = encodedString.length(); // Huffman is 1 bit per char in string
-    double ratio = (1.0 - (double)compressedBits / originalBits) * 100;
-    
-    cout << "\n--- Efficiency Stats ---" << endl;
-    cout << "Original Size: " << originalBits << " bits" << endl;
-    cout << "Compressed Size: " << compressedBits << " bits" << endl;
-    cout << "Compression Ratio: " << ratio << "%" << endl;
+
+    int mapBits = 0;
+    for(auto pair : huffmanCode) {
+        mapBits += 8;                    // character itself
+        mapBits += pair.second.length(); // Huffman code
+    }
+
+    int encodedBits = encodedString.length();
+    int totalCompressedBits = encodedBits + mapBits;
+    double ratio = (1.0 - (double)totalCompressedBits / originalBits) * 100;
+
+    cout << "\n--- Efficiency Stats ---\n";
+    cout << "Original Size: " << originalBits << " bits\n";
+    cout << "Encoded Data Size: " << encodedBits << " bits\n";
+    cout << "Huffman Map Size: " << mapBits << " bits\n";
+    cout << "Total Compressed Size: " << totalCompressedBits << " bits\n";
+    cout << "Compression Ratio: " << ratio << "%\n";
 
     // --- MEMORY CLEANUP ---
     deleteTree(root);
 }
 
 int main() {
-    string text = "Hello this is Shreesh Pathak who build file compression using Huffman Coding.";
+    string text = "Data compression is the process of reducing the size of data while preserving information. Huffman coding is a lossless data compression algorithm that assigns shorter binary codes to frequently occurring characters and longer binary codes to less frequent characters. The algorithm builds a Huffman tree using character frequencies and generates optimal prefix codes. Data compression is widely used in file storage, network communication, multimedia systems, and operating systems. Huffman coding is efficient because common characters such as spaces, vowels, and frequently repeated letters receive shorter codes. Data compression reduces storage requirements and improves transmission efficiency. Huffman coding is a classic greedy algorithm taught in computer science and data structures courses. Data compression is important for modern applications because large amounts of information must be stored, transferred, and processed efficiently.";
 
     // Or uncomment below to read from file:
     /*
